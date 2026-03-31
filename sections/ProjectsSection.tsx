@@ -167,10 +167,16 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
   const stRef = useRef<ScrollTrigger | null>(null);
 
   const skipSection = () => {
-    const st = stRef.current;
-    if (!st) return;
-    // Jump to the scroll position at the very end of the pin
-    window.scrollTo({ top: st.end, behavior: "smooth" });
+    // Desktop with pin: jump to the true end of the ScrollTrigger pin
+    if (stRef.current) {
+      window.scrollTo({ top: stRef.current.end, behavior: "smooth" });
+      return;
+    }
+    // Mobile fallback: jump below the entire section
+    const section = document.getElementById("projects");
+    if (section) {
+      window.scrollTo({ top: section.offsetTop + section.offsetHeight, behavior: "smooth" });
+    }
   };
 
   // 1) Floating Preview Logic
@@ -227,9 +233,10 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
             pin: true,
             scrub: 1.2,
             invalidateOnRefresh: true,
-            onRefresh: (self: ScrollTrigger) => { stRef.current = self; },
           },
         });
+        // Capture the instance right after creation
+        if (tl.scrollTrigger) stRef.current = tl.scrollTrigger;
 
         tl.to(track, {
           x: getScrollAmount,

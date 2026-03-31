@@ -11,7 +11,7 @@ function ensureScrollTrigger() {
 }
 
 /** Full-screen PDF lightbox */
-function PdfLightbox({ src, onClose }: { src: string; onClose: () => void }) {
+function PdfLightbox({ src, viewUrl, onClose }: { src: string; viewUrl: string; onClose: () => void }) {
   // Escape key to close
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -36,11 +36,12 @@ function PdfLightbox({ src, onClose }: { src: string; onClose: () => void }) {
         <p className="font-sans text-sm tracking-[0.18em] uppercase text-zinc-400">Portfolio PDF</p>
         <div className="flex items-center gap-4">
           <a
-            href={src}
-            download
+            href={viewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-sans text-sm tracking-[0.15em] uppercase text-zinc-400 hover:text-white transition-colors duration-200 border border-white/10 px-4 py-2 rounded-full hover:border-white/30"
           >
-            Download
+            Open in Drive
           </a>
           <button
             onClick={onClose}
@@ -54,12 +55,13 @@ function PdfLightbox({ src, onClose }: { src: string; onClose: () => void }) {
         </div>
       </div>
 
-      {/* PDF viewer */}
+      {/* PDF viewer — Google Drive preview embed */}
       <div className="flex-1 overflow-hidden">
         <iframe
-          src={`${src}#toolbar=1&view=FitH`}
+          src={src}
           className="w-full h-full border-0"
           title="Portfolio PDF Viewer"
+          allow="autoplay"
         />
       </div>
 
@@ -71,7 +73,13 @@ function PdfLightbox({ src, onClose }: { src: string; onClose: () => void }) {
   );
 }
 
-export function PortfolioSection({ pdfPath = "/portfolio/Attalla.pdf" }: { pdfPath?: string }) {
+export function PortfolioSection({
+  pdfPath = "https://drive.google.com/file/d/15rQCh0wlxoKU8WU2r6M3YVNkCaY1agkX/preview",
+  pdfViewUrl = "https://drive.google.com/file/d/15rQCh0wlxoKU8WU2r6M3YVNkCaY1agkX/view?usp=drive_link",
+}: {
+  pdfPath?: string;
+  pdfViewUrl?: string;
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -152,7 +160,11 @@ export function PortfolioSection({ pdfPath = "/portfolio/Attalla.pdf" }: { pdfPa
       </section>
 
       {lightboxOpen && (
-        <PdfLightbox src={pdfPath} onClose={() => setLightboxOpen(false)} />
+        <PdfLightbox
+          src={pdfPath}
+          viewUrl={pdfViewUrl}
+          onClose={() => setLightboxOpen(false)}
+        />
       )}
     </>
   );
