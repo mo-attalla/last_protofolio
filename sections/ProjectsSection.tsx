@@ -164,6 +164,15 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const count = images.length;
 
+  const stRef = useRef<ScrollTrigger | null>(null);
+
+  const skipSection = () => {
+    const st = stRef.current;
+    if (!st) return;
+    // Jump to the scroll position at the very end of the pin
+    window.scrollTo({ top: st.end, behavior: "smooth" });
+  };
+
   // 1) Floating Preview Logic
   useEffect(() => {
     const preview = previewRef.current;
@@ -213,11 +222,12 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: pinContainer,
-            start: "top top", 
-            end: () => `+=${Math.abs(getScrollAmount())}`, 
+            start: "top top",
+            end: () => `+=${Math.abs(getScrollAmount())}`,
             pin: true,
             scrub: 1.2,
             invalidateOnRefresh: true,
+            onRefresh: (self: ScrollTrigger) => { stRef.current = self; },
           },
         });
 
@@ -304,6 +314,18 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
 
         {/* 2) Horizontal Pinned Track Area */}
         <div ref={pinRef} className="relative block lg:flex lg:h-[100vh] lg:flex-col lg:justify-center">
+          {/* Skip button — desktop only, visible during pin */}
+          <button
+            onClick={skipSection}
+            className="hidden lg:flex absolute bottom-8 right-8 z-20 items-center gap-2 font-sans text-xs tracking-[0.18em] uppercase text-zinc-500 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25 px-5 py-2.5 rounded-full backdrop-blur-sm bg-black/20"
+            aria-label="Skip this section"
+          >
+            Skip
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
           <div 
             ref={trackWrapperRef} 
             className="touch-scroll-x relative w-full touch-pan-x overflow-x-auto overscroll-x-contain pb-12 max-[430px]:pb-10 lg:overflow-hidden lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
