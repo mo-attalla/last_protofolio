@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MagnetHeading } from "@/components/motion/MagnetHeading";
@@ -82,7 +82,6 @@ export function PortfolioSection({
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Entrance animation — same cinematic fade-up as other sections
   useEffect(() => {
@@ -136,8 +135,10 @@ export function PortfolioSection({
 
             {/* Right — CTA button */}
             <div className="shrink-0">
-              <button
-                onClick={() => setLightboxOpen(true)}
+              <a
+                href="https://drive.google.com/file/d/15rQCh0wlxoKU8WU2r6M3YVNkCaY1agkX/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-3 font-sans text-sm tracking-[0.18em] uppercase text-zinc-100 border border-white/20 px-8 py-4 rounded-full hover:border-white/50 transition-all duration-300 hover:bg-white/5"
               >
                 <span>View Portfolio PDF</span>
@@ -150,7 +151,7 @@ export function PortfolioSection({
                 >
                   <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -159,13 +160,6 @@ export function PortfolioSection({
         </div>
       </section>
 
-      {lightboxOpen && (
-        <PdfLightbox
-          src={pdfPath}
-          viewUrl={pdfViewUrl}
-          onClose={() => setLightboxOpen(false)}
-        />
-      )}
     </>
   );
 }
