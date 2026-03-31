@@ -64,7 +64,7 @@ export const EXPERIENCE_DATA = [
   {
     role: "Graphic Designer",
     company: "Ezz Agency",
-    date: "Jan 2023 – May 2025",
+    date: "Oct 2024 – May 2025",
     description: "High-paced commercial campaigns, social media grids, and advertising creatives."
   },
   {
