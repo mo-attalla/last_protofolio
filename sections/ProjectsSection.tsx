@@ -321,10 +321,10 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
 
         {/* 2) Horizontal Pinned Track Area */}
         <div ref={pinRef} className="relative block lg:flex lg:h-[100vh] lg:flex-col lg:justify-center">
-          {/* Skip button — desktop only, visible during pin */}
+          {/* Skip button — visible during pin/scroll area */}
           <button
             onClick={skipSection}
-            className="hidden lg:flex absolute bottom-8 right-8 z-20 items-center gap-2 font-sans text-xs tracking-[0.18em] uppercase text-zinc-500 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25 px-5 py-2.5 rounded-full backdrop-blur-sm bg-black/20"
+            className="absolute bottom-6 right-6 z-20 flex items-center gap-2 font-sans text-[0.65rem] tracking-[0.18em] uppercase text-zinc-500 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25 px-4 py-2 rounded-full backdrop-blur-sm bg-black/40 min-[430px]:bottom-8 min-[430px]:right-8 min-[430px]:px-5 min-[430px]:py-2.5 min-[430px]:text-xs md:px-6 md:py-3"
             aria-label="Skip this section"
           >
             Skip
