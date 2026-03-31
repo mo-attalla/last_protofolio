@@ -7,6 +7,7 @@ import { AboutSection } from "@/sections/AboutSection";
 import { ContactSection } from "@/sections/ContactSection";
 import { HeroSection } from "@/sections/HeroSection";
 import { ExperienceSection } from "@/sections/ExperienceSection";
+import { PortfolioSection } from "@/sections/PortfolioSection";
 import { ProjectsSection } from "@/sections/ProjectsSection";
 import { ServicesSection } from "@/sections/ServicesSection";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <ServicesSection />
       <ExperienceSection />
       <ProjectsSection images={projectImages} />
+      <PortfolioSection />
       <ContactSection />
     </main>
   );

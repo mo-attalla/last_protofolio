@@ -283,7 +283,7 @@ export function ProjectsSection({ images = [] }: { images?: string[] }) {
               <p className="section-label">Selected work</p>
               <MagnetHeading
                 as="h2"
-                text="Projects"
+                text="Latest"
                 className="mt-4 font-serif text-[clamp(1.75rem,5.2vw,3rem)] font-normal leading-[1.08] tracking-[0.02em] text-zinc-100 min-[390px]:mt-5 md:mt-6"
               />
               <p className="mt-5 max-w-lg text-[0.9375rem] leading-[1.75] text-zinc-500 sm:mt-6 sm:text-[0.95rem] sm:leading-[1.8]">
