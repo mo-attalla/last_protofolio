@@ -37,10 +37,9 @@ export const SITE_TAGLINE = "Design with restraint, built for impact.";
 
 /** Placeholder hrefs — replace with real profiles when ready. */
 export const SOCIAL_LINKS = [
-  { label: "Website", href: "#" },
-  { label: "Behance", href: "#" },
-  { label: "Portfolio", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  { label: "Behance", href: "https://www.behance.net/mohamedabdoua" },
+  { label: "Portfolio", href: "https://drive.google.com/file/d/15rQCh0wlxoKU8WU2r6M3YVNkCaY1agkX/view?usp=drive_link" },
+  { label: "LinkedIn", href: "https://drive.google.com/file/d/15rQCh0wlxoKU8WU2r6M3YVNkCaY1agkX/view?usp=drive_link" },
 ] as const;
 
 export const ABOUT_INTRO =
