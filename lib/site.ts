@@ -56,10 +56,10 @@ export const EXPERIENCE_DATA = [
     description: "Premium educational book design. End-to-end visual identities and print-ready typography."
   },
   {
-    role: "Visual Content Lead",
+    role: "Graphic Designer",
     company: "KOVO",
     date: "Jan 2026 – Present",
-    description: "Directing brand development and campaign visual strategy alongside the creative team."
+    description: "High-paced commercial campaigns, social media grids, and advertising creatives."
   },
   {
     role: "Graphic Designer",
